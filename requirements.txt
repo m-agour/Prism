@@ -13,3 +13,5 @@ pyyaml
 cvxpy
 hdf5storage
 h5py
+# Visualization (scripts/visualize_odf.py, FURY renderings):
+fury

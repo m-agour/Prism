@@ -175,3 +175,12 @@ xvfb-run -a python invivo/hcp_tracking_benchmark.py
 #   xvfb-run -a python invivo/hcp_tracking_benchmark.py --viz-only
 # Without FURY (headless servers):
 #   python invivo/hcp_tracking_benchmark.py --no-fury
+
+# ══════════════════════════════════════════════════════════════════════════
+# FIBER-PEAK ODF VISUALIZATION
+# ══════════════════════════════════════════════════════════════════════════
+# Render ODF glyphs from the fitted peaks of any fit directory (auto-selects the
+# crossing-richest slice; --slice/--axis to override).
+xvfb-run -a python scripts/visualize_odf.py \
+  --fit-dir outputs/fitting/disco1_snr50_defaults_encoder \
+  --n-fibers 5 --axis axial --out odf_disco.png

@@ -41,6 +41,10 @@ Benchmarks (DiSCo data fetched via DIPY):
         --n-fibers 3 --n-steps 70 --no-eddy --device cuda --outdir out/hcp
     python invivo/hcp_dice_vs_freesurfer.py --prism-dir out/hcp --hcp-dir HCP_DIR
 
+Visualize fiber peaks as ODF glyphs from any fit directory:
+
+    python scripts/visualize_odf.py --fit-dir out/ --n-fibers 5 --out odf.png
+
 ## Reproducing the paper's numbers
 
 Precomputed results are under `results/`; the commands above regenerate them.
