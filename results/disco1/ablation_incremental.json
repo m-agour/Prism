@@ -1,0 +1,118 @@
+[
+  {
+    "name": "vanilla",
+    "desc": "Vanilla (5-fiber, no extras)",
+    "mse": null,
+    "angles": {
+      "15": {
+        "correlation": 0.8043075653719507,
+        "p_value": 1.9182040003347278e-28,
+        "n_streamlines": 11510
+      },
+      "20": {
+        "correlation": 0.855880594090855,
+        "p_value": 1.3817554242591298e-35,
+        "n_streamlines": 11513
+      },
+      "25": {
+        "correlation": 0.8399886136805926,
+        "p_value": 4.0579196072765244e-33,
+        "n_streamlines": 11518
+      },
+      "30": {
+        "correlation": 0.8550457787498035,
+        "p_value": 1.8937069190582218e-35,
+        "n_streamlines": 11520
+      }
+    },
+    "best_angle": 20,
+    "best_r": 0.855880594090855
+  },
+  {
+    "name": "+restricted",
+    "desc": "+ Restricted compartment",
+    "mse": null,
+    "angles": {
+      "15": {
+        "correlation": 0.932900338194973,
+        "p_value": 3.610470492536344e-54,
+        "n_streamlines": 11511
+      },
+      "20": {
+        "correlation": 0.9330809948360727,
+        "p_value": 3.0959618409903604e-54,
+        "n_streamlines": 11514
+      },
+      "25": {
+        "correlation": 0.9270405903719077,
+        "p_value": 4.2437358025587864e-52,
+        "n_streamlines": 11518
+      },
+      "30": {
+        "correlation": 0.9174608845844575,
+        "p_value": 4.630272970425295e-49,
+        "n_streamlines": 11519
+      }
+    },
+    "best_angle": 20,
+    "best_r": 0.9330809948360727
+  },
+  {
+    "name": "+nuisance",
+    "desc": "+ Nuisance calibration (bias + gains)",
+    "mse": null,
+    "angles": {
+      "15": {
+        "correlation": 0.9328978254526578,
+        "p_value": 3.618188270248104e-54,
+        "n_streamlines": 11511
+      },
+      "20": {
+        "correlation": 0.9277137814568682,
+        "p_value": 2.50533820639928e-52,
+        "n_streamlines": 11517
+      },
+      "25": {
+        "correlation": 0.9332676518630116,
+        "p_value": 2.640057324893577e-54,
+        "n_streamlines": 11524
+      },
+      "30": {
+        "correlation": 0.9296789855446888,
+        "p_value": 5.221809505954104e-53,
+        "n_streamlines": 11525
+      }
+    },
+    "best_angle": 25,
+    "best_r": 0.9332676518630116
+  },
+  {
+    "name": "full_nll",
+    "desc": "Full PRISM + learned \u03c3 (NLL)",
+    "mse": null,
+    "angles": {
+      "15": {
+        "correlation": 0.9249889631817675,
+        "p_value": 2.0510915208297938e-51,
+        "n_streamlines": 11499
+      },
+      "20": {
+        "correlation": 0.9295883308513843,
+        "p_value": 5.619141916556827e-53,
+        "n_streamlines": 11504
+      },
+      "25": {
+        "correlation": 0.9340778702716941,
+        "p_value": 1.3151476437155107e-54,
+        "n_streamlines": 11507
+      },
+      "30": {
+        "correlation": 0.9276390987150003,
+        "p_value": 2.6568506891332343e-52,
+        "n_streamlines": 11515
+      }
+    },
+    "best_angle": 25,
+    "best_r": 0.9340778702716941
+  }
+]

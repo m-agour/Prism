@@ -1,0 +1,177 @@
+# ── Full PRISM (baseline) ──────────────────────────────────────────────
+python scripts/simple_fit_microstructure.py \
+  --dwi ~/.dipy/disco/disco_1/highRes_DiSCo1_DWI_RicianNoise-snr50.nii.gz \
+  --bvals ~/.dipy/disco/disco_1/DiSCo_gradients.bvals \
+  --bvecs ~/.dipy/disco/disco_1/DiSCo_gradients_dipy.bvecs \
+  --mask ~/.dipy/disco/disco_1/highRes_DiSCo1_mask.nii.gz \
+  --all-slices --slab-mode --slab-size 40 \
+  --n-fibers 5 --n-steps 300 --no-early-stop \
+  --seed 2000 --device cuda --use-rician \
+  --outdir outputs/fitting/disco1_snr50_defaults_encoder
+
+# ── Ablation: vanilla (no restricted, no nuisance, no priors) ─────────
+python scripts/simple_fit_microstructure.py \
+  --dwi ~/.dipy/disco/disco_1/highRes_DiSCo1_DWI_RicianNoise-snr50.nii.gz \
+  --bvals ~/.dipy/disco/disco_1/DiSCo_gradients.bvals \
+  --bvecs ~/.dipy/disco/disco_1/DiSCo_gradients_dipy.bvecs \
+  --mask ~/.dipy/disco/disco_1/highRes_DiSCo1_mask.nii.gz \
+  --all-slices --slab-mode --slab-size 40 \
+  --n-fibers 5 --n-steps 300 --no-early-stop \
+  --seed 2000 --device cuda \
+  --no-restricted --no-shell-gain --no-bias-field --no-rician \
+  --no-topology --no-spatial-prior --no-tissue-priors --sparsity-weight 0 --no-eddy \
+  --outdir outputs/ablation_disco1/vanilla
+
+# ── Ablation: +restricted ─────────────────────────────────────────────
+python scripts/simple_fit_microstructure.py \
+  --dwi ~/.dipy/disco/disco_1/highRes_DiSCo1_DWI_RicianNoise-snr50.nii.gz \
+  --bvals ~/.dipy/disco/disco_1/DiSCo_gradients.bvals \
+  --bvecs ~/.dipy/disco/disco_1/DiSCo_gradients_dipy.bvecs \
+  --mask ~/.dipy/disco/disco_1/highRes_DiSCo1_mask.nii.gz \
+  --all-slices --slab-mode --slab-size 40 \
+  --n-fibers 5 --n-steps 300 --no-early-stop \
+  --seed 2000 --device cuda \
+  --no-shell-gain --no-bias-field --no-rician \
+  --no-topology --no-spatial-prior --no-tissue-priors --sparsity-weight 0 --no-eddy \
+  --outdir outputs/ablation_disco1/+restricted
+
+# ── Ablation: full − topology ────────────────────────────────────────
+python scripts/simple_fit_microstructure.py \
+  --dwi ~/.dipy/disco/disco_1/highRes_DiSCo1_DWI_RicianNoise-snr50.nii.gz \
+  --bvals ~/.dipy/disco/disco_1/DiSCo_gradients.bvals \
+  --bvecs ~/.dipy/disco/disco_1/DiSCo_gradients_dipy.bvecs \
+  --mask ~/.dipy/disco/disco_1/highRes_DiSCo1_mask.nii.gz \
+  --all-slices --slab-mode --slab-size 40 \
+  --n-fibers 5 --n-steps 300 --no-early-stop \
+  --seed 2000 --device cuda --use-rician \
+  --no-topology --sparsity-weight 0 \
+  --outdir outputs/ablation_disco1/full_no_topo
+
+# ── Ablation: full − spatial prior ───────────────────────────────────
+python scripts/simple_fit_microstructure.py \
+  --dwi ~/.dipy/disco/disco_1/highRes_DiSCo1_DWI_RicianNoise-snr50.nii.gz \
+  --bvals ~/.dipy/disco/disco_1/DiSCo_gradients.bvals \
+  --bvecs ~/.dipy/disco/disco_1/DiSCo_gradients_dipy.bvecs \
+  --mask ~/.dipy/disco/disco_1/highRes_DiSCo1_mask.nii.gz \
+  --all-slices --slab-mode --slab-size 40 \
+  --n-fibers 5 --n-steps 300 --no-early-stop \
+  --seed 2000 --device cuda --use-rician \
+  --no-spatial-prior \
+  --outdir outputs/ablation_disco1/full_no_spatial
+
+# ── Evaluate all configs (DiSCo1 tractography correlation) ───────────
+# python benchmarks/disco1_fair_benchmark.py  (point it at each outdir)
+
+# ══════════════════════════════════════════════════════════════════════
+# OPTIMIZER BENCHMARK (Table 3)
+# ══════════════════════════════════════════════════════════════════════
+# (Optimizer-comparison script is not included in this release; the optimizer
+#  result is summarized inline in the paper, Sec. Methods.)
+
+# ══════════════════════════════════════════════════════════════════════════
+# NARROW-CROSSING BENCHMARK — CANONICAL (Table 1)
+# ══════════════════════════════════════════════════════════════════════════
+# Script: benchmarks/multitensor_narrow_all_methods.py
+# Methods: PRISM (MSE+NLL), CSD, MSMT-CSD, FORECAST, ODF-FP, FORCE
+# Config: 16 angles (15–90° in 5° steps) + single-fiber controls,
+#         200 voxels/config (3400 total), SNR=30, seed=203
+# CSD: single shell [0,3000], oracle-mask response (from GT single-fiber voxels)
+# MSMT-CSD: full multi-shell, oracle eigenvalue response, lmax=12, thr=0.25, sep=10°
+# ODF-FP: 1M-atom dictionary, max 3 peaks
+# Output: benchmarks/outputs/narrow_crossing_canonical/
+python benchmarks/multitensor_narrow_all_methods.py \
+  --snr-levels 30 \
+  --seed 203 \
+  --device cuda \
+  --output-dir benchmarks/outputs/narrow_crossing_canonical
+
+# ══════════════════════════════════════════════════════════════════════════
+# WIDE-ANGLE BENCHMARK (cross-SNR summary, supplementary)
+# ══════════════════════════════════════════════════════════════════════════
+# Script: benchmarks/benchmark_multitensor_sim.py
+# Methods: PRISM (MSE+NLL), CSD, MSMT-CSD, FORECAST, ODF-FP, DTI, Q-Ball, DKI, SFM, FORCE
+# Config: 5 angles (30–90° in 15° steps), 200 voxels/config, SNR={10,30,50},
+#         seed=203, fraction_mode=both, shell_mode=standard, oracle responses
+# Output: benchmarks/outputs/multitensor_canonical_v2.json
+python benchmarks/benchmark_multitensor_sim.py \
+  --snr-levels 10 30 50 \
+  --seed 203 \
+  --fraction-mode both \
+  --shell-mode standard \
+  --csd-response-mode oracle \
+  --msmtcsd-response-mode oracle \
+  --dipy-min-separation-angle 10 \
+  --device cuda \
+  --output benchmarks/outputs/multitensor_canonical_v2.json
+
+# ══════════════════════════════════════════════════════════════════════════
+# MSMT-CSD SENSITIVITY SWEEP (fairness validation, 27 configs)
+# ══════════════════════════════════════════════════════════════════════════
+# lmax ∈ {6,8,10}, threshold ∈ {0.1,0.25,0.5}, sep ∈ {15,25,35}
+# Best: lmax=10, thr=0.1, sep=15 (all_mean=15.0°); <2× variation across grid
+# Output: benchmarks/outputs/msmtcsd_sensitivity.json
+python benchmarks/msmtcsd_sensitivity.py
+
+# ══════════════════════════════════════════════════════════════════════════
+# HCP IN-VIVO WHOLE-BRAIN FITTING + DICE vs FREESURFER
+# ══════════════════════════════════════════════════════════════════════════
+# Data: HCP 100307, 145×174×145, 288 measurements, 4 shells (b=0,1000,2000,3000)
+# FreeSurfer T1 segmentation: t1_tissue_gt.nii.gz (0=WM, 1=GM, 2=CSF)
+#
+# Step 1: Whole-brain PRISM fit (slab-based, ~18 min on A6000)
+HCP_DIR=/home/moabouag/studies/.assignmentss/dmrl/data/HCP/100307
+python scripts/simple_fit_microstructure.py \
+  --dwi ${HCP_DIR}/data.nii.gz \
+  --bvals ${HCP_DIR}/bvals \
+  --bvecs ${HCP_DIR}/bvecs \
+  --mask ${HCP_DIR}/nodif_brain_mask.nii.gz \
+  --all-slices --slab-mode --slab-size 16 --overlap 10 \
+  --n-fibers 3 --n-steps 70 --no-eddy --device cuda \
+  --outdir outputs/hcp_100307_wholebrain
+
+# Step 2: Dice vs FreeSurfer (whole-brain)
+python invivo/hcp_dice_vs_freesurfer.py \
+  --prism-dir outputs/hcp_100307_wholebrain \
+  --hcp-dir ${HCP_DIR}
+# Expected: Argmax Dice WM≈0.80, GM≈0.80; Threshold-optimal WM≈0.83, GM≈0.82
+
+# Step 3: PRISM slab fit (20 slices, higher quality for paper figure)
+python scripts/simple_fit_microstructure.py \
+  --dwi ${HCP_DIR}/data.nii.gz \
+  --bvals ${HCP_DIR}/bvals \
+  --bvecs ${HCP_DIR}/bvecs \
+  --mask ${HCP_DIR}/nodif_brain_mask.nii.gz \
+  --slice-range 62 82 --slab-mode --slab-size 20 \
+  --n-fibers 3 --n-steps 200 --device cuda --use-rician \
+  --outdir outputs/hcp_100307_nll_slab
+
+# Step 4: Dice vs FreeSurfer (slab, best results)
+python invivo/hcp_dice_vs_freesurfer.py \
+  --prism-dir outputs/hcp_100307_nll_slab \
+  --hcp-dir ${HCP_DIR} \
+  --slab-z 62 82
+# Expected: Argmax Dice WM≈0.88, GM≈0.81; Threshold-optimal WM≈0.91, GM≈0.82
+
+# Step 5: MSMT-CSD comparison on the same slab (optional; script not included in release)
+
+# ══════════════════════════════════════════════════════════════════════════
+# HCP TRACKING BENCHMARK — PRISM vs CSD vs ODF-FP
+# ══════════════════════════════════════════════════════════════════════════
+# Deterministic tractography + RecoBundles + TractCloud + BUAN + FURY
+# Requires: HCP 100307, PRISM whole-brain fit, TractCloud pretrained model
+#
+# Full pipeline (builds ODFs, tracks, extracts bundles, runs TractCloud,
+# computes MDF + BA + BUAN profiles, renders FURY mosaics):
+xvfb-run -a python invivo/hcp_tracking_benchmark.py
+# Output: outputs/hcp_tracking_benchmark/
+#   - tracking_benchmark_results.json (MDF, BA, streamline counts)
+#   - figures/metrics_mdf_ba.png      (MDF + BA bar charts)
+#   - figures/buan_profiles.png       (BUAN along-tract density profiles)
+#   - figures/tractcloud_counts.png   (TractCloud parcellation comparison)
+#   - figures/recobundles_*.png       (FURY shaded tube renderings, 3 views)
+#   - figures/tractcloud_coronal.png  (TractCloud parcellation vs atlas)
+#
+# Quick re-render from cached data (skips fitting/tracking):
+#   xvfb-run -a python invivo/hcp_tracking_benchmark.py --viz-only
+# Without FURY (headless servers):
+#   python invivo/hcp_tracking_benchmark.py --no-fury

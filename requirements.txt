@@ -1,0 +1,15 @@
+# PRISM core dependencies
+torch>=2.0
+dipy>=1.12
+numpy
+scipy
+nibabel
+tqdm
+matplotlib
+pyyaml
+# Baseline comparison methods (synthetic Table 1):
+#   MSMT-CSD (via dipy MultiShellDeconvModel) requires cvxpy;
+#   ODF-FP requires h5py + hdf5storage.
+cvxpy
+hdf5storage
+h5py

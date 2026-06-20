@@ -1,0 +1,138 @@
+[
+  {
+    "snr": 50,
+    "n_seeds": 11528,
+    "fit_dir": "/home/moabouag/studies/.assignmentss/brute/gymri/outputs/fitting/disco1_snr50_defaults_encoder",
+    "odf_sum_csd": 22.368727446239976,
+    "odf_sum_mcsd": 18.577238649869983,
+    "odf_sum_gymri": 21.4019775390625,
+    "has_mcsd": true,
+    "methods": {
+      "deterministic": {
+        "angles": {
+          "15": {
+            "csd": {
+              "correlation": 0.9058595378377885,
+              "p_value": 7.680615482834914e-46,
+              "n_streamlines": 11528
+            },
+            "mcsd": {
+              "correlation": 0.9062652706753702,
+              "p_value": 6.025426260751338e-46,
+              "n_streamlines": 11528
+            },
+            "gymri": {
+              "correlation": 0.9249889631817675,
+              "p_value": 2.0510915208297938e-51,
+              "n_streamlines": 11528
+            },
+            "gap": 0.01872369250639727,
+            "gap_pct": 2.0660278079997414,
+            "winner": "GYMRI"
+          },
+          "20": {
+            "csd": {
+              "correlation": 0.909764990233212,
+              "p_value": 7.085071255301312e-47,
+              "n_streamlines": 11528
+            },
+            "mcsd": {
+              "correlation": 0.9105389937786145,
+              "p_value": 4.3614290860891083e-47,
+              "n_streamlines": 11528
+            },
+            "gymri": {
+              "correlation": 0.9295883308513843,
+              "p_value": 5.619141916556827e-53,
+              "n_streamlines": 11528
+            },
+            "gap": 0.01904933707276979,
+            "gap_pct": 2.092094594841853,
+            "winner": "GYMRI"
+          },
+          "25": {
+            "csd": {
+              "correlation": 0.9166394728777232,
+              "p_value": 8.10488396881957e-49,
+              "n_streamlines": 11528
+            },
+            "mcsd": {
+              "correlation": 0.9176559221861944,
+              "p_value": 4.0504504567147005e-49,
+              "n_streamlines": 11528
+            },
+            "gymri": {
+              "correlation": 0.9340778702716941,
+              "p_value": 1.3151476437155107e-54,
+              "n_streamlines": 11528
+            },
+            "gap": 0.016421948085499682,
+            "gap_pct": 1.789553980796697,
+            "winner": "GYMRI"
+          },
+          "30": {
+            "csd": {
+              "correlation": 0.9172028750331872,
+              "p_value": 5.523948594542198e-49,
+              "n_streamlines": 11528
+            },
+            "mcsd": {
+              "correlation": 0.9203117731692637,
+              "p_value": 6.334043644932469e-50,
+              "n_streamlines": 11528
+            },
+            "gymri": {
+              "correlation": 0.9276390987150003,
+              "p_value": 2.6568506891332343e-52,
+              "n_streamlines": 11528
+            },
+            "gap": 0.007327325545736563,
+            "gap_pct": 0.7961786167858707,
+            "winner": "GYMRI"
+          },
+          "35": {
+            "csd": {
+              "correlation": 0.9199302981812509,
+              "p_value": 8.301102126843751e-50,
+              "n_streamlines": 11528
+            },
+            "mcsd": {
+              "correlation": 0.9168118751087644,
+              "p_value": 7.209805611254905e-49,
+              "n_streamlines": 11528
+            },
+            "gymri": {
+              "correlation": 0.9142447315525116,
+              "p_value": 4.0137150709885816e-48,
+              "n_streamlines": 11528
+            },
+            "gap": -0.005685566628739314,
+            "gap_pct": -0.6180431974009302,
+            "winner": "CSD"
+          },
+          "45": {
+            "csd": {
+              "correlation": 0.9035167377893231,
+              "p_value": 3.053826115859753e-45,
+              "n_streamlines": 11528
+            },
+            "mcsd": {
+              "correlation": 0.8793185393172257,
+              "p_value": 7.992706120933019e-40,
+              "n_streamlines": 11528
+            },
+            "gymri": {
+              "correlation": 0.8482030918049732,
+              "p_value": 2.333046343215415e-34,
+              "n_streamlines": 11526
+            },
+            "gap": -0.055313645984349846,
+            "gap_pct": -6.122038881060283,
+            "winner": "CSD"
+          }
+        }
+      }
+    },
+    "timestamp": "2026-02-18T15:41:53.184583"
+  }
+]
