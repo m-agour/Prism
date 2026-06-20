@@ -187,7 +187,7 @@ def run_benchmark(
         n_iters = 100
         methods = [m for m in methods if m not in ('force', 'odffp')]
 
-    print_header("Multi-Tensor Narrow-Crossing Benchmark — All Methods")
+    print_header("Multi-Tensor Narrow-Crossing Benchmark - All Methods")
     print(f"  Crossing angles: {crossing_angles}")
     print(f"  SNR levels: {snr_levels}")
     print(f"  Methods: {methods}")
@@ -500,7 +500,7 @@ def print_summary(all_results):
         if not snr_data:
             continue
 
-        print_header(f"RESULTS — SNR = {int(snr)}")
+        print_header(f"RESULTS - SNR = {int(snr)}")
 
         configs = ['single'] + [f'cross_{a}' for a in crossing_angles]
         angle_labels = ['1-fib'] + [str(a) for a in crossing_angles]

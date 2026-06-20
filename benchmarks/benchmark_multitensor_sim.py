@@ -2465,14 +2465,14 @@ def write_benchmark_tables(results: dict, output_stem: Path) -> dict[str, str]:
             if not any_data:
                 continue
 
-            f.write(f"\n## {fib_label} Voxels — Per-Method Breakdown\n\n")
+            f.write(f"\n## {fib_label} Voxels - Per-Method Breakdown\n\n")
             f.write(f"| Method | Prim Mean | All Mean | All Med | Std | P90 | <5° | <10° | <15° | <20° | <25° | Frac RMSE | N |\n")
             f.write(f"|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n")
             for mk, mr in methods.items():
                 stats = _get(mr, "by_n_fibers", fib_key, default={})
                 n_v = stats.get("n_voxels", 0)
                 if n_v == 0:
-                    f.write(f"| {mr.get('method', mk.upper())} | — | — | — | — | — | — | — | — | — | — | — | 0 |\n")
+                    f.write(f"| {mr.get('method', mk.upper())} | - | - | - | - | - | - | - | - | - | - | - | 0 |\n")
                     continue
                 f.write(f"| {mr.get('method', mk.upper())}")
                 f.write(f" | {_fmt_deg(stats.get('primary_mean'))}")

@@ -1,7 +1,9 @@
 # PRISM
 
 Code for the MICCAI 2026 paper "PRISM: Differentiable Analysis-by-Synthesis for
-Fixel Recovery in Diffusion MRI" (Abouagour et. al).
+Fixel Recovery in Diffusion MRI" (Abouagour et al.).
+
+![PRISM analysis-by-synthesis pipeline](docs/pipeline.png)
 
 PRISM fits a multi-compartment dMRI forward model (CSF, GM, K white-matter
 fibers, restricted compartment) end-to-end with PyTorch + Rprop, jointly
@@ -44,18 +46,18 @@ Benchmarks (DiSCo data fetched via DIPY):
 Precomputed results are under `results/`; the commands above regenerate them.
 Verified on the released code (NVIDIA L40S/H100, torch 2.9.1).
 
-Synthetic crossing-fiber (Table 1) — reproduces exactly:
+Synthetic crossing-fiber (Table 1) reproduces exactly:
 
     results/synthetic_table1/narrow_crossing_results.json
     # PRISM_MSE 3.5 deg / PRISM_NLL 2.3 deg best-match angular error; 95 / 99 % recall;
     # 1.9x lower error than the best baseline MSMT-CSD (6.8 deg).
 
-DiSCo1 connectivity + incremental ablation — reproduces:
+DiSCo1 connectivity + incremental ablation reproduces:
 
     results/disco1/disco1_connectivity_r.json   # PRISM r=.934 @25deg vs MSMT-CSD .920
     results/disco1/ablation_incremental.json     # vanilla .84 -> +restricted .93 -> full .93
 
-HCP 100307 tissue Dice — reproduces from raw data. Provide your own HCP 100307 download
+HCP 100307 tissue Dice reproduces from raw data. Provide your own HCP 100307 download
 plus a FreeSurfer tissue segmentation at `<HCP_DIR>/t1_segmentation/t1_tissue_gt.nii.gz`
 (labels 0=WM, 1=GM, 2=CSF). The whole-brain fit uses MSE mode with `--no-eddy`:
 
@@ -72,4 +74,3 @@ paper's HCP numbers; tissue metrics are seed-stable to <0.003 and consistent acr
 ## License
 
 MIT (see LICENSE).
-# Prism

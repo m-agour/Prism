@@ -703,7 +703,7 @@ def run_benchmark(snr=50, methods=['deterministic'], angles=[15, 20, 25, 30],
         best_gymri_trk = os.path.join(trk_dir, f'gymri_{method}_angle{best_gymri_angle}_snr{snr}.trk')
         
         if not os.path.exists(best_csd_trk) or not os.path.exists(best_gymri_trk):
-            print(f"  Skipping {method} — TRK files not found")
+            print(f"  Skipping {method} - TRK files not found")
             continue
         
         streams_best_csd = load_tractogram(best_csd_trk, reference=labels_img,

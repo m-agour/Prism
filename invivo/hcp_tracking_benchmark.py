@@ -1028,7 +1028,7 @@ def plot_tractcloud_counts(predictions_dict, out_dir):
                linewidth=0.3)
 
     ax.set_ylabel('Streamline Count', fontsize=11)
-    ax.set_title('TractCloud Parcellation — Registration-Free',
+    ax.set_title('TractCloud Parcellation - Registration-Free',
                  fontsize=13, fontweight='bold')
     ax.set_xticks(x)
     ax.set_xticklabels(display, rotation=45, ha='right', fontsize=9)
@@ -1045,7 +1045,7 @@ def plot_tractcloud_counts(predictions_dict, out_dir):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='HCP Tracking Benchmark — PRISM vs CSD vs ODF-FP')
+        description='HCP Tracking Benchmark - PRISM vs CSD vs ODF-FP')
     parser.add_argument('--skip-tractcloud', action='store_true',
                         help='Skip TractCloud parcellation step')
     parser.add_argument('--viz-only', action='store_true',

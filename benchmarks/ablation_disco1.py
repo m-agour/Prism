@@ -88,7 +88,7 @@ def fit_config(name, cfg, dry_run=False):
     outdir = Path(cfg.get("outdir", str(OUTDIR_BASE / name)))
     
     if (outdir / "fiber_dirs.nii.gz").exists():
-        print(f"  ✓ {name:20s} — already fitted at {outdir}")
+        print(f"  ✓ {name:20s} - already fitted at {outdir}")
         return True
     
     cmd = [
@@ -100,13 +100,13 @@ def fit_config(name, cfg, dry_run=False):
     ]
     
     print(f"\n{'='*70}")
-    print(f"FITTING: {name} — {cfg['desc']}")
+    print(f"FITTING: {name} - {cfg['desc']}")
     print(f"{'='*70}")
     print(f"  Output: {outdir}")
     print(f"  Command: {' '.join(cmd)}")
     
     if dry_run:
-        print("  [DRY RUN — skipping]")
+        print("  [DRY RUN - skipping]")
         return True
     
     os.makedirs(outdir, exist_ok=True)
@@ -128,7 +128,7 @@ def eval_config(name, cfg, disco_data, angles, merge_peaks_angle=15):
     fit_dir = Path(cfg.get("outdir", str(OUTDIR_BASE / name)))
     
     if not (fit_dir / "fiber_dirs.nii.gz").exists():
-        print(f"  ✗ {name:20s} — not fitted yet (run with --fit first)")
+        print(f"  ✗ {name:20s} - not fitted yet (run with --fit first)")
         return None
     
     sys.path.insert(0, str(Path(__file__).parent))
@@ -194,7 +194,7 @@ def eval_config(name, cfg, disco_data, angles, merge_peaks_angle=15):
 
 def print_ablation_table(all_results, angles):
     print(f"\n{'='*90}")
-    print("ABLATION RESULTS — DiSCo1 (SNR=50, deterministic tracking)")
+    print("ABLATION RESULTS - DiSCo1 (SNR=50, deterministic tracking)")
     print(f"{'='*90}")
     
     angle_cols = "".join(f" {a:>6d}°" for a in angles)
@@ -268,7 +268,7 @@ def main():
         selected = CONFIGS
     
     print(f"\n{'='*70}")
-    print(f"PRISM ABLATION STUDY — DiSCo1 (SNR=50)")
+    print(f"PRISM ABLATION STUDY - DiSCo1 (SNR=50)")
     print(f"{'='*70}")
     print(f"Configs:  {list(selected.keys())}")
     print(f"Output:   {OUTDIR_BASE}")

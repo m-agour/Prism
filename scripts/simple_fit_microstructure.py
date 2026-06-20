@@ -872,7 +872,7 @@ def _create_artifacts_panel(art, artifacts_dir, spatial_shape, mask=None,
                     
                     im = ax.imshow(display, cmap=cmap, vmin=vmin_val, vmax=vmax_val,
                                    origin='lower', aspect='equal')
-                    ax.set_title(f'{panel_name} — {view_name}' if col == 0 else view_name,
+                    ax.set_title(f'{panel_name} - {view_name}' if col == 0 else view_name,
                                 fontweight='bold' if col == 0 else 'normal', fontsize=10)
                     ax.axis('off')
                     
@@ -1004,7 +1004,7 @@ def _create_artifacts_panel(art, artifacts_dir, spatial_shape, mask=None,
                     im = ax.imshow(display, cmap='gray', origin='lower', aspect='equal')
                     title = shell_labels[col_idx]
                     if col_idx == 0:
-                        title = f'Per-Shell Mean DWI — {title}'
+                        title = f'Per-Shell Mean DWI - {title}'
                     ax.set_title(title, fontweight='bold' if col_idx == 0 else 'normal', fontsize=9)
                     ax.axis('off')
                     
@@ -1071,7 +1071,7 @@ def _create_artifacts_panel(art, artifacts_dir, spatial_shape, mask=None,
                     cmap.set_bad(color='white')
                     
                     im = ax.imshow(display, cmap=cmap, origin='lower', aspect='equal')
-                    ax.set_title(f'{panel_name} — {view_name}' if col == 0 else view_name,
+                    ax.set_title(f'{panel_name} - {view_name}' if col == 0 else view_name,
                                 fontweight='bold' if col == 0 else 'normal', fontsize=10)
                     ax.axis('off')
                     
@@ -1236,7 +1236,7 @@ def _create_artifacts_panel(art, artifacts_dir, spatial_shape, mask=None,
             
             row += 1
     
-    title = f"Scanner Artifact Model — {dataset_name}" if dataset_name else "Scanner Artifact Model"
+    title = f"Scanner Artifact Model - {dataset_name}" if dataset_name else "Scanner Artifact Model"
     fig.suptitle(title, fontsize=14, fontweight='bold', y=1.02)
     
     panel_path = os.path.join(artifacts_dir, "artifacts_panel.png")

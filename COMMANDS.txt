@@ -69,11 +69,11 @@ python scripts/simple_fit_microstructure.py \
 #  result is summarized inline in the paper, Sec. Methods.)
 
 # ══════════════════════════════════════════════════════════════════════════
-# NARROW-CROSSING BENCHMARK — CANONICAL (Table 1)
+# NARROW-CROSSING BENCHMARK - CANONICAL (Table 1)
 # ══════════════════════════════════════════════════════════════════════════
 # Script: benchmarks/multitensor_narrow_all_methods.py
 # Methods: PRISM (MSE+NLL), CSD, MSMT-CSD, FORECAST, ODF-FP, FORCE
-# Config: 16 angles (15–90° in 5° steps) + single-fiber controls,
+# Config: 16 angles (15-90° in 5° steps) + single-fiber controls,
 #         200 voxels/config (3400 total), SNR=30, seed=203
 # CSD: single shell [0,3000], oracle-mask response (from GT single-fiber voxels)
 # MSMT-CSD: full multi-shell, oracle eigenvalue response, lmax=12, thr=0.25, sep=10°
@@ -90,7 +90,7 @@ python benchmarks/multitensor_narrow_all_methods.py \
 # ══════════════════════════════════════════════════════════════════════════
 # Script: benchmarks/benchmark_multitensor_sim.py
 # Methods: PRISM (MSE+NLL), CSD, MSMT-CSD, FORECAST, ODF-FP, DTI, Q-Ball, DKI, SFM, FORCE
-# Config: 5 angles (30–90° in 15° steps), 200 voxels/config, SNR={10,30,50},
+# Config: 5 angles (30-90° in 15° steps), 200 voxels/config, SNR={10,30,50},
 #         seed=203, fraction_mode=both, shell_mode=standard, oracle responses
 # Output: benchmarks/outputs/multitensor_canonical_v2.json
 python benchmarks/benchmark_multitensor_sim.py \
@@ -155,7 +155,7 @@ python invivo/hcp_dice_vs_freesurfer.py \
 # Step 5: MSMT-CSD comparison on the same slab (optional; script not included in release)
 
 # ══════════════════════════════════════════════════════════════════════════
-# HCP TRACKING BENCHMARK — PRISM vs CSD vs ODF-FP
+# HCP TRACKING BENCHMARK - PRISM vs CSD vs ODF-FP
 # ══════════════════════════════════════════════════════════════════════════
 # Deterministic tractography + RecoBundles + TractCloud + BUAN + FURY
 # Requires: HCP 100307, PRISM whole-brain fit, TractCloud pretrained model
